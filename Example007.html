@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<body>
+    你爱好运动吗？
+    <input id = 'all' type="checkbox">全选/全不选 <br>
+    <input type="checkbox" name="item" value = '足球'>足球
+    <input type="checkbox" name="item" value = '篮球'>篮球
+    <input type="checkbox" name="item" value = '羽毛球'>羽毛球
+    <input type="checkbox" name="item" value = '乒乓球'>乒乓球<br>
+
+    <button id = 'one'>全选</button>
+    <button id = 'two'>全不选</button>
+    <button id = 'three'>反选</button>
+    <button id = 'four'>提交</button>
+
+    <script>
+        var items = document.getElementsByName('item');
+        var one = document.getElementById('one');
+        one.onclick = function() {
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = true;
+            };
+        }
+
+        var two = document.getElementById('two');
+        two.onclick = function() {
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = false;
+            };
+        }
+
+        var three = document.getElementById('three');
+        three.onclick = function() {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].checked) {
+                    items[i].checked = false;
+                } else {
+                    items[i].checked = true;
+                }
+            };
+        }
+
+        var four = document.getElementById('four');
+        four.onclick = function() {
+            for (var i = 0; i < items.length; i++) {
+                if (items[i].checked) {
+                    alert(items[i].value);
+                }
+            };
+        }
+
+        var all = document.getElementById('all');
+        all.onclick = function() {
+            for (var i = 0; i < items.length; i++) {
+                items[i].checked = all.checked;
+            };
+        }
+
+    </script>
+</body>
+</html>
