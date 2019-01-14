@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>切换图片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 500px;
+            padding: 10px;
+            margin: 50px auto;
+            background-color: yellowgreen;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img id = 'xhd' src="Example006-1.jpg"><br>
+        <p id = 'text'>共计5张图，这是第1张</p>
+        <button id = 'up'>上一页</button>
+        <button id = 'down'>下一页</button>
+    </div>
+    <script>
+        var xhd = document.getElementById('xhd');
+        var imgArr = ["Example006-1.jpg", "Example006-2.jpg", "Example006-3.jpg", "Example006-4.jpg", "Example006-5.jpg"]
+        var up = document.getElementById('up');
+        var down = document.getElementById('down');
+        var p = document.getElementById('text');
+
+        var index = 0;
+        up.onclick = function() {
+            if (index === 0) {
+                index = 4;
+            } else {
+                index--;
+            }
+            xhd.src = imgArr[index]
+            p.innerHTML = '共计' + imgArr.length + '张图,这是第' + (index + 1) + '张';
+        }
+
+        down.onclick = function() {
+            if (index === 4) {
+                index = 0;
+            } else {
+                index++;
+            }
+            xhd.src = imgArr[index]
+            p.innerHTML = '共计' + imgArr.length + '张图,这是第' + (index + 1) + '张';
+        }
+    </script>
+</body>
+</html>
