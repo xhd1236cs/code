@@ -28,6 +28,10 @@
 
 //			绑定鼠标移动事件，触发时返回坐标
 			areaDiv.onmousemove = function (event) {
+				if (!event) {
+//					如果没有event，也就是IE8及以下浏览器，是将事件对象作为window对象的属性保存的
+					event = window.event;
+				}
 				var x = event.clientX;
 				var y = event.clientY;
 				showMsg.innerHTML = "x : " + x + " y : " + y;
