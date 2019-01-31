@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>显示鼠标移动坐标</title>
+		<style>
+			#areaDiv {
+				height: 400px;
+			}
+
+			#showMsg {
+				height: 100px;
+			}
+
+			div {
+				margin: 10px auto;
+				width: 600px;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="areaDiv"></div>
+		<div id="showMsg"></div>
+		<script>
+			var areaDiv = document.getElementById("areaDiv");
+			var showMsg = document.getElementById("showMsg");
+
+//			绑定鼠标移动事件，触发时返回坐标
+			areaDiv.onmousemove = function (event) {
+				var x = event.clientX;
+				var y = event.clientX;
+				showMsg.innerHTML = "x : " + x + " y : " + y;
+			}
+		</script>
+	</body>
+</html>
