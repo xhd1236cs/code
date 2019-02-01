@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM事件 div随鼠标移动</title>
+	<style>
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			/*必须开启绝对定位div才能随鼠标移动*/
+			position: absolute;
+		}
+
+		body {
+			height: 1000px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		var box = document.getElementById("box");
+		//把鼠标移动事件绑定在document上，避免鼠标脱离范围
+		document.onmousemove = function (event) {
+			var left = event.pageX; // 获取相对于当前页面的水平坐标
+			var top = event.pageY; // 获取相对于当前页面的垂直坐标
+			
+
+			//获取滚动条的距离，
+					
+				
+			box.style.left = left + sl + "px"; // div的水平位移
+			box.style.top = top + st + "px"; // div的垂直位移
+		}
+	</script>
+</body>
+</html>
