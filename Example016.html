@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>事件冒泡与取消</title>
+		<style>
+			#box1 {
+				width: 200px;
+				height: 200px;
+				background-color: greenyellow;
+				border: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">
+			我是box1
+			<span id="span1">我是span</span>
+		</div>
+		<script>
+			var span1 = document.getElementById("span1");
+			span1.onclick = function (event) {
+				event = event || window.event;
+				alert("我是span的单击相应函数");
+
+				//如果没有以下这行代码，会事件冒泡，点一下span会弹出span/div/body三个提示框
+				//取消冒泡：把事件对象的cancelBubble设置为true
+				event.cancelBubble = true;
+			}
+
+			var box1 = document.getElementById("box1");
+			box1.onclick = function () {
+				alert("我是div的单击相应函数")
+			}
+
+			document.body.onclick = function () {
+				alert("我是body的单击相应函数")
+			}
+		</script>
+	</body>
+</html>
