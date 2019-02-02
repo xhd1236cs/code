@@ -15,24 +15,59 @@
 		body {
 			height: 1000px;
 		}
+
+		#box2 {
+			width: 400px;
+			height: 400px;
+			background-color: greenyellow;
+		}
 	</style>
 </head>
 <body>
-	<div id="box"></div>
+	<div id="box2">
+		<div id="box"></div>
+	</div>
 	<script type="text/javascript">
 		var box = document.getElementById("box");
 		//把鼠标移动事件绑定在document上，避免鼠标脱离范围
 		document.onmousemove = function (event) {
+			if (!event) {
+				//如果没有event，也就是IE8及以下浏览器，是将事件对象作为window对象的属性保存的
+				//这是为了解决兼容问题
+				event = window.event;
+			}			
+			/*如果用event.clientX就是相对于当前可见窗口的水平坐标，一挪滚动条就完了
 			var left = event.pageX; // 获取相对于当前页面的水平坐标
 			var top = event.pageY; // 获取相对于当前页面的垂直坐标
-			
+			如果用event.pageX,不兼容IE8及以下的浏览器
+			所以只能用event.clientX加上滚动条滚动的距离
+			*/
 
-			//获取滚动条的距离，
-					
-				
-			box.style.left = left + sl + "px"; // div的水平位移
+			var left = event.clientX;
+			var top = event.clientY;
+			
+			/*获取滚动条的距离
+		    chrome浏览器中滚动条是body的，通过body.scrollTop来获取
+		    火狐等浏览器中滚动条是html，通过documentElement.scrollTop来获取*/
+
+		    var st = document.body.scrollTop || document.documentElement.scrollTop;
+		    var sl = document.body.scrollLeft || document.documentElement.scrollLeft;
 			box.style.top = top + st + "px"; // div的垂直位移
+			box.style.left = left + sl +  "px"; // div的水平位移
+		}
+
+		var box2 = document.getElementById("box2");
+		box2.onmousemove = function (event) {
+			if (!event) {
+				//如果没有event，也就是IE8及以下浏览器，是将事件对象作为window对象的属性保存的
+				//这是为了解决兼容问题
+				event = window.event;
+			}
+		
+			//取消冒泡：把事件对象的cancelBubble设置为true
+			event.cancelBubble = true;
 		}
 	</script>
+	
 </body>
 </html>
