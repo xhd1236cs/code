@@ -6,17 +6,34 @@
 </head>
 <body>
 	<div>
-		<a class = "xxx" href="javascript:;">超链接一</a>
-		<a class = "xxx" href="javascript:;">超链接二</a>
-		<a class = "xxx" href="javascript:;">超链接三</a>
+		<button id="add">添加超链接</button>
+		<ul id="ul1">
+			<li><a class = "xxx" href="javascript:;">超链接一</a></li>
+			<li><a class = "xxx" href="javascript:;">超链接二</a></li>
+			<li><a class = "xxx" href="javascript:;">超链接三</a></li>
+		</ul>
 	</div>
+	
 	<script>
 		var aALL = document.getElementsByClassName("xxx");
-		alert(aAll.length);
-		for (var i = 0; i < aAll.length; i++) {
-			aAll[i].onclick = function () {
+		var ul1 = document.getElementById("ul1");
+
+/* 		for (var i = 0; i < aALL.length; i++) {
+			aALL[i].onclick = function () {
 				alert("我是超链接");
 			}
+		} */
+		// 以上方法虽然可以成功，但是每一个链接都绑定了事件，太麻烦，影响性能
+		// 可以通过只绑定祖先元素ul的方法来控制所有子元素，这就叫事件的委托。如以下代码
+		ul1.onclick = function () {
+			alert("我是超链接");
+		}
+
+		var add = document.getElementById("add");
+		add.onclick = function () {
+			var li = document.createElement("li");
+			li.innerHTML = "<a class = 'xxx' href = 'javascript:;'>我是新加的超链接</a>";
+			ul1.appendChild(li);
 		}
 	</script>
 </body>
