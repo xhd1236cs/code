@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绑定响应函数的2种方法</title>
+</head>
+<body>
+	<button id = "button1">按钮1</button>
+	<button id = "button2">按钮2</button>
+	<script>
+		var button1 = document.getElementById("button1");
+		var button2 = document.getElementById("button2");
+
+		//绑定响应函数的第1种方法
+		button1.onclick = function () {
+			alert(1);
+		}
+
+		//绑定响应函数的第2种方法,可以为同一个元素绑定多个函数内容不同的同一响应事件
+		//事件触发时，按顺序执行
+		button2.addEventListener("click", function () {
+			alert(2)
+		}, false);
+		
+		button2.addEventListener("click", function () {
+			alert(3)
+		}, false);
+		
+		button2.addEventListener("click", function () {
+			alert(4)
+			return true;
+		}, false);
+
+		/*以上第2种方法只支持IE8以上的浏览器，对于小于或等于IE8的浏览器，
+		用attachEvent代替addEventListener
+		用onclick代替click
+		代码如下,执行顺序从下到上，与addEventListener相反，字符串要用on,不用写false
+		
+		button2.attachEvent("onclick", function () {
+			alert(2)
+		});
+		
+		button2.attachEvent("onclick", function () {
+			alert(3)
+		});
+		
+		button2.attachEvent("onclick", function () {
+			alert(4)
+			return true;
+		});
+*/
+	</script>
+</body>
+</html>
