@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>垂直居中方法二</title>
+	<style>
+		.boxmax {
+			border: 1px solid black;
+			width: 300px;
+			height: 300px;
+			position: relative;
+		}
+
+		.box {
+			background-color: red;
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="boxmax">
+		<div class="box">我要垂直居中</div>
+	</div>
+</body>
+</html>
