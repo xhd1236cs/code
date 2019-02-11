@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件 拖拽</title>
+	<style>
+		div {
+			width: 100px;
+			height: 100px;
+			margin: 10px;
+		}
+
+		#box1 {
+			background-color: red;
+			/*必须开启绝对定位div才能随鼠标移动*/
+			position: absolute;			
+		}
+
+		#box2 {
+			background-color: yellow;
+			position: absolute;
+			left: 100px;
+			top: 200px;			
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">我是box1</div>
+	<div id="box2">我是box2</div>
+	<script>
+		var box1 = document.getElementById("box1");
+		var box2 = document.getElementById("box2");
+		
+		drag(box1);
+		drag(box2);
+
+		function drag(obj) {
+			//鼠标拖拽的流程：
+			//	1.当鼠标在被拖拽的元素上按下时，开始拖拽 事件onmousedown
+			//	2.当鼠标移动时，被拖拽元素跟随鼠标移动  事件onmousemove
+			//	3.当鼠标松开时，被拖拽元素固定在当前位置 事件onmouseup
+			obj.onmousedown = function (event) {
+				//鼠标按下时，捕获事件
+				obj.setCapture && obj.setCapture();
+				event = event || window.event;
+				//div的水平偏移量 鼠标.clientX - 元素.offsetLeft
+				//div的垂直偏移量 鼠标。clientY - obj.offsetTop
+				var ol = event.clientX - obj.offsetLeft;
+				var ot = event.clientY - obj.offsetTop;
+				
+				document.onmousemove = function (event) {
+					event = event || window.event;
+					// 获取鼠标坐标
+					var left = event.clientX - ol;
+					var top = event.clientY - ot;
+
+					obj.style.left = left + "px";
+					obj.style.top = top + "px";
+				}
+
+				document.onmouseup = function () {
+					document.onmousemove = null;
+					document.onmouseup = null;
+					// 当鼠标松开时，取消对事件的捕获
+					obj.releaseCapture && obj.releaseCapture();
+				}
+				// 拖拽网页中的内容时，浏览器会默认去搜索引擎中搜索内容
+				// 此时会导致拖拽功能的异常，如果不想发生这个默认行为，可以通过return false来解决
+				// 但这招对IE8无效
+				return false;
+			}			
+		}
+	</script>
+</body>
+</html>
