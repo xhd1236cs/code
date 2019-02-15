@@ -34,6 +34,8 @@
         // });
         bind(box1, "DOMMouseScroll", fun);
 
+        //也可以删除fun这个通用函数，把bind这一行写成bind(box1, "DOMMouseScroll", box1.onmousewheel);
+
         //参数obj 指要绑定的对象
         //参数eventStr 指事件的字符串
         //参数callback 指回调函数 
