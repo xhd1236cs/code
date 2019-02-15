@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM事件 键盘按下松开及使文本框不能输入数字</title>
+</head>
+<body>
+    <input type="text">
+    <script>
+/*         document.onkeydown = function () {
+            console.log("按键被按下");
+        }
+
+        document.onkeyup = function () {
+            console.log("按键被松开");
+        } 
+*/
+/*         document.onkeydown = function (event) {
+            event = event || window.envet;
+            // 可以通过按键的默认编码来判断按下的是哪个键
+            if (event.keyCode === 89) {
+                console.log("y被按下了");
+            } 
+            if (event.keyCode === 89 && event.ctrlKey) {
+                //用altKey/ctrlKey/shiftKey可以单独判断是否按下alt/ctrl/shift
+                console.log("ctrl和y都被按下了");
+            }
+        } */
+
+        var input = document.getElementsByTagName("input")[0];
+        input.onkeydown = function (event) {
+            event = event || window.event;
+            //  以下做法使文本框不能输入数字,数字编码为48-57
+            if (event.keyCode >= 48 && event.keyCode <= 57) {
+                // 以下方法可以取消文本框的默认行为，使内容不能输入文本框
+                return false;
+            }
+        }
+
+
+    </script>
+</body>
+</html>
