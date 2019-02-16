@@ -1,6 +1,10 @@
 # code
 这是一个用于存储日常练习代码的仓库。
 
+博客地址：
+
+https://blog.csdn.net/weixin_41990123
+
 简单的CSS布局：
 
 https://xhd1236cs.github.io/code/Example001.html
