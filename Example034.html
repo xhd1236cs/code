@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用定时器控制器div到指定位置 龟兔赛跑</title>
+    <style>
+        .box {
+           width: 100px;
+           height: 100px;
+           background-color: red; 
+           position: absolute;
+           text-align: center;
+           line-height: 100px;
+        }
+
+        #title {
+            text-align: center;
+        }
+
+        #finishLine {
+            width: 0;
+            height: 600px;
+            border-right: 1px solid black;
+            position: absolute;
+            left: 800px;
+            top: 100px;
+        }
+
+        #box1 {
+            top: 200px;
+        }
+
+        #box2 {
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">龟兔赛跑</h1>
+    <button id="btn01">比赛开始</button>
+    <h1 id="time"></h1>
+
+    <div class = "box" id="box1">我是乌龟</div>
+    <div class = "box" id="box2">我是兔子</div>
+    <div id="finishLine"></div>
+
+
+    <script>
+        var btn01 = document.getElementById("btn01");
+        var time = document.getElementById("time");
+        var num = 5;
+        var timer;
+
+        btn01.onclick = function () {
+            //先清除之前的定时器，防止开启多个定时器导致不断加速
+            clearInterval(timer);
+
+            // 开始倒计时
+            timer = setInterval (function () {
+                time.innerHTML = num--;
+                // 如果数值小于-1了，就停止计时
+                if (num < -1) {
+                    clearInterval(timer);
+                    time.innerHTML = "Go！";
+
+                    var box1 = document.getElementById("box1");
+                    var box2 = document.getElementById("box2");
+        
+                    // 定义乌龟和兔子的速度
+                    var speed1 = 2;
+                    var speed2 = 6;
+        
+                    var timer1 = setInterval(function () {
+                        box1.style.left = box1.offsetLeft + speed1 + "px";
+
+                        var a = box1.offsetLeft + speed1;
+
+                        if (a >= 800) {
+                            a = 800;
+                            clearInterval(timer1);
+                            time.innerHTML = "兔子中途睡觉，乌龟赢了"
+                        }
+                    }, 20);
+
+                    var timer2 = setInterval(function () {
+                        box2.style.left = box2.offsetLeft + speed2 + "px";
+                        
+                        var b = box2.offsetLeft + speed2;
+
+                        // 当兔子跑到指定距离后开始睡觉
+                        if (b >= 600) {
+                            b = 600;
+                            clearInterval(timer2);
+                        }
+                    }, 20);                    
+                }
+            },1000);
+        }        
+    </script>
+</body>
+</html>
