@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>识别浏览器</title>
+</head>
+<body>
+    <script>
+        // Navigator 代表的当前浏览器的信息，通过该对象可以来识别不同的浏览器
+        var ua = navigator.userAgent;
+        console.log(ua);
+        
+        // i 的意思是指忽略大小写
+        if (/firefox/i.test(ua)) {
+            alert("这是火狐浏览器");
+        } else if (/edge/i.test(ua)) {
+            alert("这是Edge浏览器");
+        } else if ("ActiveXObject" in window) {
+            alert("这是IE浏览器");
+        } else if (/chrome/i.test(ua)) {
+            alert("这是谷歌浏览器");
+        } 
+        
+    </script>
+</body>
+</html>
