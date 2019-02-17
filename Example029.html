@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘控制div移动</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* div只有定位了才能移动 */
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <script>
+        var box1 = document.getElementById("box1");
+        document.onkeydown = function (event) {
+            event = event || window.event;
+            // 通过以下这行代码查看上下左右的编码，得到左37上38右39下40
+            //console.log(event.keyCode);
+            //定义一个变量来表示移动速度，也就是每次移动的距离
+            var speed = 20;
+            // 如果用户按下ctrl，可以加速
+            if (event.ctrlKey) {
+                speed = 50;
+            }
+            switch (event.keyCode) {
+                case 37:
+                    // alert("向左"); 
+                    box1.style.left = box1.offsetLeft - speed + "px";
+                    break;
+                case 38:
+                    // alert("向上");
+                    box1.style.top = box1.offsetTop - speed + "px";
+                    break;
+                case 39:
+                    // alert("向右");
+                    box1.style.left = box1.offsetLeft + speed + "px";
+                    break;
+                case 40:
+                    // alert("向下");
+                    box1.style.top = box1.offsetTop + speed + "px";
+
+                    break;
+                default:
+                    // alert("按错了");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
