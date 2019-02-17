@@ -136,3 +136,7 @@ https://xhd1236cs.github.io/code/Example032.html
 用定时器控制div的移动速度：
 
 https://xhd1236cs.github.io/code/Example033.html
+
+用定时器控制器div到指定位置 龟兔赛跑：
+
+https://xhd1236cs.github.io/code/Example034.html
