@@ -116,3 +116,23 @@ https://xhd1236cs.github.io/code/Example027.html
 事件 键盘按下松开及使文本框不能输入数字：
 
 https://xhd1236cs.github.io/code/Example028.html
+
+键盘控制div移动：
+
+https://xhd1236cs.github.io/code/Example029.html
+
+识别浏览器：
+
+https://xhd1236cs.github.io/code/Example030.html
+
+用定时器倒计时：
+
+https://xhd1236cs.github.io/code/Example031.html
+
+用定时器切换图片：
+
+https://xhd1236cs.github.io/code/Example032.html
+
+用定时器控制div的移动速度：
+
+https://xhd1236cs.github.io/code/Example033.html
