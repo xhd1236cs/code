@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用定时器切换图片</title>
+    <style>
+        * {
+            margin: 10px auto;
+        }
+
+        .picture {
+            display:block;
+            width: 500px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="picture">
+        <img id="img" src="images/Example006-1.jpg" alt="这是图片">
+        <button id="btn01">开始</button>
+        <button id="btn02">停止</button>
+    </div>
+    
+    <script>
+        var btn01 = document.getElementById("btn01");
+        var btn02 = document.getElementById("btn02");
+        var img = document.getElementById("img");
+        var imgArr = ["images/Example006-1.jpg", 
+            "images/Example006-2.jpg", 
+            "images/Example006-3.jpg", 
+            "images/Example006-4.jpg",
+            "images/Example006-5.jpg"];
+        
+        var index = 0;
+        var timer;
+        btn01.onclick = function () {
+        //  定时器每点击一次就会开启一个，为避免加速，每次开启定时器之前先清除之前的定时器
+            clearInterval(timer);
+            timer = setInterval (function () {
+                // clearInterval(timer);
+                img.src = imgArr[index];
+                index++;
+                if (index >= imgArr.length) {
+                    index = 0;
+                }
+            },1000);
+        };
+
+        btn02.onclick = function () {
+            clearInterval(timer);
+        };
+    </script>
+</body>
+</html>
