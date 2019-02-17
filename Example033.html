@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用定时器控制div的移动速度</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /* div只有定位了才能移动 */
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+
+    <script>
+        var box1 = document.getElementsByClassName("box1")[0];
+        var dir;
+
+        //定义div每次移动的速度
+        var speed = 10;
+
+        // 用定时器控制div的移动速度，避免卡顿
+        var timer = setInterval(function () {
+            // 然后用选择语句
+            switch (dir) {
+                case 37: 
+                    box1.style.left = box1.offsetLeft - speed + "px";
+                    break;
+                case 38: 
+                    box1.style.top = box1.offsetTop - speed + "px";
+                    break;
+                case 39: 
+                    box1.style.left = box1.offsetLeft + speed + "px";
+                    break;
+                case 40: 
+                    box1.style.top = box1.offsetTop + speed + "px";
+                    break;
+                default: 
+                    break;
+            }
+        }, 30); // 每30毫秒变一次
+
+        document.onkeydown = function (event) {
+            // 防止浏览器不兼容
+            event = event || window.event;
+            // 如果同时按ctrl和方向键会加速
+            if (event.ctrlKey) {
+                speed = 50;
+            }
+            // 查看四个方向键的编码，得到左上右下依次为37,38,39,40
+            // console.log(event.keyCode);
+
+            // 在用定时器之前把之前开的定时器清除，防止速度速度地越来越快
+            // clearInterval(timer);
+
+            dir = event.keyCode;
+        }
+
+        document.onkeyup = function () {
+            // 当松开键盘时，div要停止移动
+            dir = 0;
+            // 松开ctrl时，速度要恢复原状
+            speed = 10;
+        }
+
+        </script>
+</body>
+</html>
