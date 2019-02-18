@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>用定时器控制器div到指定位置 龟兔赛跑</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         .box {
            width: 100px;
            height: 100px;
@@ -16,12 +21,13 @@
         }
 
         #title {
+            margin-top: 30px;
             text-align: center;
         }
 
         #finishLine {
             width: 0;
-            height: 600px;
+            height: 500px;
             border-right: 1px solid black;
             position: absolute;
             left: 800px;
@@ -35,12 +41,26 @@
         #box2 {
             top: 400px;
         }
+
+        #btn01 {
+            display: inline-block;
+            margin: 0 100px;
+            width: 100px;
+            height: 50px;
+        }
+
+        #time {
+            display: inline;
+            margin: 0 50px;
+        }
     </style>
 </head>
 <body>
     <h1 id="title">龟兔赛跑</h1>
-    <button id="btn01">比赛开始</button>
-    <h1 id="time"></h1>
+    <div class="begin">
+        <button id="btn01">比赛开始</button>
+        <h1 id="time"></h1>
+    </div>
 
     <div class = "box" id="box1">我是乌龟</div>
     <div class = "box" id="box2">我是兔子</div>
@@ -77,7 +97,7 @@
 
                         var a = box1.offsetLeft + speed1;
 
-                        if (a >= 800) {
+                        if (a > 800) {
                             a = 800;
                             clearInterval(timer1);
                             time.innerHTML = "兔子中途睡觉，乌龟赢了"
@@ -90,7 +110,7 @@
                         var b = box2.offsetLeft + speed2;
 
                         // 当兔子跑到指定距离后开始睡觉
-                        if (b >= 600) {
+                        if (b > 600) {
                             b = 600;
                             clearInterval(timer2);
                         }
