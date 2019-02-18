@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+            float: left;
+            margin: 0 10px;
+        }
+
+        ul {
+            position: absolute;
+            left: -520px;
+        }
+
+        #outer {
+            width: 520px;
+            height: 333px;
+            margin: 50px auto;
+            background-color: greenyellow;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <ul id="imgUl">
+            <li><img src="images/Example006-1.jpg" alt="图片"></li>
+            <li><img src="images/Example006-2.jpg" alt="图片"></li>
+            <li><img src="images/Example006-3.jpg" alt="图片"></li>
+            <li><img src="images/Example006-4.jpg" alt="图片"></li>
+            <li><img src="images/Example006-5.jpg" alt="图片"></li>
+        </ul>
+    </div>
+
+    <script>
+        var imgArr = document.getElementsByTagName("img");
+        var imgUl = document.getElementById("imgUl");
+        imgUl.style.width = 520 * imgArr.length + "px";
+
+        // 切换图片其实就是把ul向左移，需要开启定位
+        // 先给Ul开启绝对定位absolute,再给父元素开启相对定位
+
+    </script>
+</body>
+</html>
