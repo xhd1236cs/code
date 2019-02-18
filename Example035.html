@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>定时器控制div 龟兔赛跑 方法二</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            margin-top: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        #box2 {
+            top: 300px;
+        }
+
+        h1.title {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        #btn01 {
+            display:inline-block;
+            width: 100px;
+            height: 50px;
+            margin: 0 100px;
+        }
+
+        #time {
+            display: inline;
+            margin: 0 50px;
+        }
+
+        #finishLine {
+            width: 0;
+            height: 700px;
+            border-right: 1px solid black;
+            position: absolute;
+            left: 800px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">龟兔赛跑</h1>
+    <div class="begin">
+        <button id="btn01">比赛开始</button>
+        <h1 id="time"></h1>
+    </div>
+    <div class="box" id="box1">我是乌龟</div>
+    <div class="box" id="box2">我是兔子</div>
+    <div id="finishLine"></div>
+
+    <script>
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var btn01 = document.getElementById("btn01");
+        var timer;
+        var num = 5;
+
+        function getStyle(obj, name) {
+            if (window.getComputedStyle) {
+                //正常浏览器的方式具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            } else {
+                //IE8的方式,没有getComputedStyle()方法
+                return obj.currntStyle[name];
+            }
+        };
+
+/*         function fun(name, speed, distance) {
+            timer = setInterval(function () {
+                if (newValue > distance) {
+                    newValue = distance;
+                }
+
+
+            }, 30);
+        } */
+
+        btn01.onclick = function () {
+            //先清除之前的定时器，防止开启多个定时器导致不断加速
+            clearInterval(timer);
+
+            // 开始倒计时
+            timer = setInterval (function () {
+                time.innerHTML = num--;
+                // 如果数值小于-1了，就停止计时
+                if (num < -1) {
+                    clearInterval(timer);
+                    time.innerHTML = "Go！";
+
+                    // 定义乌龟和兔子的速度
+                    var speed1 = 2;
+                    var speed2 = 6;
+
+                    var timer1 = setInterval(function () {                     
+                        var oldValue = parseInt(getStyle(box1, "left"));
+                        var newValue = oldValue + speed1;
+
+                        if (newValue > 800) {
+                            newValue = 800;
+                        }
+
+                        box1.style.left = newValue + "px";
+
+                        if (newValue === 800) {
+                            time.innerHTML = "兔子中途睡觉，乌龟赢了";
+                            clearIntervar(timer1);
+                        }                        
+
+                    }, 20);
+
+
+                    var timer2 = setInterval(function () {                     
+                        var oldValue = parseInt(getStyle(box2, "left"));
+                        var newValue = oldValue + speed2;
+
+                        if (newValue > 600) {
+                            newValue = 600;
+                        }
+                        
+                        box2.style.left = newValue + "px";
+
+                        if (newValue === 600) {
+                            clearIntervar(timer2);
+                        }                        
+                    }, 20);
+                }
+            },1000);
+
+        }
+
+    </script>
+</body>
+</html>
