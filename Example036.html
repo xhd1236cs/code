@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>轮播图</title>
+    <title>手动轮播图</title>
     <style>
         * {
             margin: 0;
@@ -17,7 +17,7 @@
             margin: 0 10px;
         }
 
-        ul {
+        #imgUl {
             position: absolute;
             left: -520px;
         }
@@ -31,6 +31,27 @@
             position: relative;
             overflow: hidden;
         }
+
+        #navDiv {
+            position: absolute;
+            bottom:15px;
+        }
+
+        #navDiv a {
+            display: inline-block;
+            background-color: red;
+            margin: 0 10px;
+            width: 15px;
+            height: 15px;
+            /* 设置透明 */
+            opacity: 0.5;
+            /* 兼容IE8透明 */
+            filter: alpha(opacity=50);
+        }
+
+        #navDiv a:hover {
+            background-color: green;
+        }
     </style>
 </head>
 <body>
@@ -42,6 +63,13 @@
             <li><img src="images/Example006-4.jpg" alt="图片"></li>
             <li><img src="images/Example006-5.jpg" alt="图片"></li>
         </ul>
+        <div id="navDiv">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
     </div>
 
     <script>
@@ -52,6 +80,31 @@
         // 切换图片其实就是把ul向左移，需要开启定位
         // 先给Ul开启绝对定位absolute,再给父元素开启相对定位
 
+        // 把轮播图的链接居中
+        var navDiv = document.getElementById("navDiv");
+        var outer = document.getElementById("outer");
+        navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+
+        // 默认第一个链接背景为绿色，也就是鼠标悬停状态
+        var Alla = document.getElementsByTagName("a");
+        Alla[0].style.backgroundColor = "green";
+        imgUl.style.left = 0;
+
+        // 为每个链接添加属性标签，知道谁是谁
+        for (var i = 0; i < imgArr.length; i++) {
+            // 为链接添加属性num
+            // 第一个链接num属性值为0，第二个为1。。。
+            Alla[i].num = i;
+            Alla[i].onclick = function () {
+                imgUl.style.left = this.num * (-520) + "px";
+                for (var j = 0; j < Alla.length; j++) {
+                    // 先把所有链接颜色统一，再改变被点击的链接背景色
+                    // 写空字符串为了不覆盖style中悬停的红色
+                    Alla[j].style.backgroundColor = "";
+                }
+                this.style.backgroundColor = "green";
+            }
+        }
     </script>
 </body>
 </html>
